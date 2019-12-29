@@ -1,1 +1,1 @@
-# web_manga_catalogs
+# web_comic_catalogs
