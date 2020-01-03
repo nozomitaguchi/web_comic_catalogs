@@ -32,7 +32,6 @@ object Record {
     selector: Selector,
     maybeAttribute: Option[Attribute],
     generation: Generation,
-    maybeFormat: Option[Format],
     maybeUrl: Option[columns.Url]
   ) {
 
