@@ -30,12 +30,10 @@ case class AnalyzeRulesRepository[F[_]: Monad](transactor: Transactor[F])(implic
          | MAX(IF(styles.analyze_rule_style_type = 'url', styles.selector, '')) as url_selector,
          | MAX(IF(styles.analyze_rule_style_type = 'url', attributes.attribute, NULL)) as url_attribute,
          | MAX(IF(styles.analyze_rule_style_type = 'url', styles.generation, 0)) as url_generation,
-         | MAX(IF(styles.analyze_rule_style_type = 'url', formats.format, NULL)) as url_format,
          | MAX(IF(styles.analyze_rule_style_type = 'url', urls.url, NULL)) as url_url,
          | MAX(IF(styles.analyze_rule_style_type = 'image_url', styles.selector, '')) as image_url_selector,
          | MAX(IF(styles.analyze_rule_style_type = 'image_url', attributes.attribute, NULL)) as image_url_attribute,
          | MAX(IF(styles.analyze_rule_style_type = 'image_url', styles.generation, 0)) as image_url_generation,
-         | MAX(IF(styles.analyze_rule_style_type = 'image_url', formats.format, NULL)) as image_url_format,
          | MAX(IF(styles.analyze_rule_style_type = 'image_url', urls.url, NULL)) as image_url_url
          |FROM
          | analyze_rules rules
