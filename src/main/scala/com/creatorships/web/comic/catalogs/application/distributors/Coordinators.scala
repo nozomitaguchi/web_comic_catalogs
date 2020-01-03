@@ -11,7 +11,6 @@ case class Coordinators(toSeq: Seq[Coordinator]) extends AnyVal {
     (for {
       coordinator <- toSeq.toList
       rule <- rules.findBy(coordinator).toList
-      publisher <- coordinator.contents(rule)
-    } yield publisher.pure[F]).sequence.map(Publishers)
+    } yield coordinator.contents(rule).pure[F]).sequence.map(publishersList => Publishers(publishersList.flatten))
 
 }
