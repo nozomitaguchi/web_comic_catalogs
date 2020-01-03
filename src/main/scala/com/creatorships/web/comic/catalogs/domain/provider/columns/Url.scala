@@ -5,7 +5,7 @@ import net.ruippeixotog.scalascraper.browser.{Browser, JsoupBrowser}
 
 case class Url(underlying: String) extends AnyVal {
 
-  override def toString: String = if (underlying.lastOption.contains('/')) underlying else underlying + '/'
+  override def toString: String = if (underlying.lastOption.contains('/')) underlying.init else underlying
 
   def analyze[T](path: Path)(analyzeRule: AnalyzeRule[T]): Seq[T] = {
     val document = Url.browser.get(toString + path.toString)
