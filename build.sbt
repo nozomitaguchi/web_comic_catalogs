@@ -11,18 +11,18 @@ lazy val loggingLibraries = Seq(
   "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.9"
 )
 
-val catsVersion = "2.0.0-RC2"
-val catsEffectVersion = "2.0.0-RC2"
-val circeVersion = "0.12.0-RC4"
-val circeConfigVersion = "0.7.0-M1"
-val http4sVersion = "0.21.0-M4"
-val doobieVersion = "0.8.0-RC1"
+val catsVersion = "2.1.0"
+val catsEffectVersion = "2.0.0"
+val circeVersion = "0.12.2"
+val circeConfigVersion = "0.7.0"
+val http4sVersion = "0.21.0-M6"
+val doobieVersion = "0.8.8"
 val mysqlVersion = "8.0.16"
 val logbackVersion = "1.2.3"
 val jacksonScalaVersion = "2.9.9"
 val scalaTestVersion = "3.0.8"
 val mockitoScalaVersion = "1.5.14"
-val log4catsVersion = "1.0.0-RC1"
+val log4catsVersion = "1.0.1"
 val redis4catsVersion = "0.8.3"
 
 lazy val common = Seq(

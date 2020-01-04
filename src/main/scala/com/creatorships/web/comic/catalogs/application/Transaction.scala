@@ -4,21 +4,26 @@ import cats.effect.{Async, Blocker, ContextShift, Resource}
 import doobie.hikari.HikariTransactor
 import doobie.util.ExecutionContexts
 import doobie.util.transactor.Transactor
+import io.circe.config.parser
+import io.circe.generic.auto._
 
 object Transaction {
 
   def apply[F[_]: Async: ContextShift]: Resource[F, Transactor[F]] =
     for {
-      connectEC <- ExecutionContexts.fixedThreadPool[F](100)
+      config <- Resource.liftF(parser.decodePathF[F, Database]("database"))
+      connectEC <- ExecutionContexts.fixedThreadPool[F](config.size)
       transactEC <- ExecutionContexts.cachedThreadPool[F]
       transactor <- HikariTransactor.newHikariTransactor[F](
-        "com.mysql.cj.jdbc.Driver",
-        "jdbc:mysql://localhost:3307/web_comic",
-        "root",
-        "password",
+        config.driver,
+        config.url,
+        config.user,
+        config.pass,
         connectEC,
         Blocker.liftExecutionContext(transactEC)
       )
     } yield transactor
+
+
 
 }
