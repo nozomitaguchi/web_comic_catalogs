@@ -44,6 +44,10 @@ object Provider {
 
   case class Publisher(id: Id, name: Name, url: Url, image: Url, path: Path) extends Distributor[Comic]
 
-  case class Comic(distributorId: Id, name: Name, url: Url, image: Url) extends Provider
+  case class Comic(distributorId: Id, name: Name, url: Url, image: Url) extends Provider {
+
+    def isMatched(other: Comic): Boolean = distributorId == other.distributorId && name == other.name && url.isMatched(other.url)
+
+  }
 
 }

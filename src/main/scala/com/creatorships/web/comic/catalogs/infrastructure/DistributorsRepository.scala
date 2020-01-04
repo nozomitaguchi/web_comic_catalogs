@@ -6,17 +6,18 @@ import com.creatorships.web.comic.catalogs.application.distributors.{Coordinator
 import com.creatorships.web.comic.catalogs.domain.provider.Provider.{Coordinator, Publisher}
 import com.creatorships.web.comic.catalogs.infrastructure.analyze.url.DistributorType
 import doobie.implicits._
+import doobie.util.fragment.Fragment
 import doobie.util.transactor.Transactor
 
-case class DistributorsRepository[F[_]: Monad](transactor: Transactor[F])(implicit bracket: Bracket[F, Throwable]) {
+case class DistributorsRepository[F[_]: Monad](xa: Transactor[F])(implicit bracket: Bracket[F, Throwable]) {
 
   def findCoordinators: F[Coordinators] =
-    selectBy(DistributorType.Coordinator).query[Coordinator].to[List].map(Coordinators).transact(transactor)
+    selectBy(DistributorType.Coordinator).query[Coordinator].to[List].map(Coordinators).transact(xa)
 
   def findPublishers: F[Publishers] =
-    selectBy(DistributorType.Publisher).query[Publisher].to[List].map(Publishers).transact(transactor)
+    selectBy(DistributorType.Publisher).query[Publisher].to[List].map(Publishers).transact(xa)
 
-  private def selectBy(distributorType: DistributorType) =
+  private def selectBy(distributorType: DistributorType): Fragment =
     sql"""SELECT
          | id,
          | name,
