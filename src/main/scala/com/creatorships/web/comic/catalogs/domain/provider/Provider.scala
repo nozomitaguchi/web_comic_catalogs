@@ -2,6 +2,11 @@ package com.creatorships.web.comic.catalogs.domain.provider
 
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.AnalyzeRule
 import com.creatorships.web.comic.catalogs.domain.provider.columns.{Id, Name, Path, Url}
+import io.circe._
+import io.circe.generic.extras.Configuration
+import io.circe.generic.extras.auto._
+import io.circe.syntax._
+import shapeless.Unwrapped
 
 sealed trait Provider {
 
@@ -10,6 +15,16 @@ sealed trait Provider {
   val url: Url
 
   val image: Url
+
+  implicit protected val jsonConfig: Configuration = Configuration.default.withSnakeCaseMemberNames
+
+  implicit protected def encodeAnyVal[W <: AnyVal, U](
+    implicit unwrapped: Unwrapped.Aux[W, U],
+    encoderUnwrapped: Encoder[U]
+  ): Encoder[W] =
+    Encoder.instance[W](v => encoderUnwrapped(unwrapped.unwrap(v)))
+
+  def json: Json = this.asJson
 
 }
 

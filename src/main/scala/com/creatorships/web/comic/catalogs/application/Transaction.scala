@@ -24,6 +24,6 @@ object Transaction {
       )
     } yield transactor
 
-
+  private case class Database(size: Int, driver: String, url: String, user: String, pass: String)
 
 }

@@ -10,6 +10,6 @@ case class Comics(toSeq: Seq[Comic]) extends AnyVal {
 
   // TODO: impl
   def register[F[_]: Monad](xa: Transactor[F])(implicit bracket: Bracket[F, Throwable]): F[Unit] =
-    toSeq.foreach(println).pure[F]
+    toSeq.map(_.json).foreach(println).pure[F]
 
 }
