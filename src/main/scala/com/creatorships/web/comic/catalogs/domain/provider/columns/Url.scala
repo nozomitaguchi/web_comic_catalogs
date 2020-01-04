@@ -12,6 +12,8 @@ case class Url(underlying: String) extends AnyVal {
     analyzeRule.apply(document)
   }
 
+  def isMatched(other: Url): Boolean = toString == other.toString
+
 }
 
 object Url {
