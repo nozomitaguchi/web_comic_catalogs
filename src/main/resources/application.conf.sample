@@ -1,0 +1,7 @@
+database {
+  size = 100
+  driver = "com.mysql.cj.jdbc.Driver"
+  url = "jdbc:mysql://localhost:3307/web_comic"
+  user = "root"
+  pass = "password"
+}
