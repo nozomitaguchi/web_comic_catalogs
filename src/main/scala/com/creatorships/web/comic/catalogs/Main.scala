@@ -1,8 +1,8 @@
 package com.creatorships.web.comic.catalogs
 
 import cats.effect.ExitCode
+import com.creatorships.web.comic.catalogs.application.Transaction
 import com.creatorships.web.comic.catalogs.application.distributors.Distributors
-import com.creatorships.web.comic.catalogs.application.{Registration, Transaction}
 import monix.eval.{Task, TaskApp}
 
 object Main extends TaskApp {
@@ -12,7 +12,7 @@ object Main extends TaskApp {
       for {
         distributors <- Distributors.fetch(xa)
         comics <- distributors.scrape
-        _ <- Registration(comics)(xa)
+        _ <- comics.register(xa)
       } yield ExitCode.Success
     }
 

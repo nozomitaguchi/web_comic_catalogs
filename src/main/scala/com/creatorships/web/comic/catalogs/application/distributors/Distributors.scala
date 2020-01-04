@@ -4,7 +4,6 @@ import cats.Monad
 import cats.effect.Bracket
 import cats.implicits._
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.AnalyzeRules
-import com.creatorships.web.comic.catalogs.domain.provider.Comics
 import com.creatorships.web.comic.catalogs.infrastructure.{AnalyzeRulesRepository, DistributorsRepository}
 import doobie.util.transactor.Transactor
 
