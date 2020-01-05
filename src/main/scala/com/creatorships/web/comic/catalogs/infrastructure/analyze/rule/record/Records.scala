@@ -1,4 +1,4 @@
-package com.creatorships.web.comic.catalogs.infrastructure.analyze.url.record
+package com.creatorships.web.comic.catalogs.infrastructure.analyze.rule.record
 
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.AnalyzeRule.{Comic, Publisher}
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.columns.Catalog

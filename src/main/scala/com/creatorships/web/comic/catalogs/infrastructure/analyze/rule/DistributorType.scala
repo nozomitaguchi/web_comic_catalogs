@@ -1,4 +1,4 @@
-package com.creatorships.web.comic.catalogs.infrastructure.analyze.url
+package com.creatorships.web.comic.catalogs.infrastructure.analyze.rule
 
 sealed abstract class DistributorType(override val toString: String)
 
