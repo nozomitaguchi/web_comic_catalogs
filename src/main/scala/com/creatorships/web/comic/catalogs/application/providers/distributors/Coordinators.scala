@@ -1,4 +1,4 @@
-package com.creatorships.web.comic.catalogs.application.distributors
+package com.creatorships.web.comic.catalogs.application.providers.distributors
 
 import cats.Monad
 import cats.implicits._

@@ -3,7 +3,7 @@ package com.creatorships.web.comic.catalogs.infrastructure
 import cats.Monad
 import cats.effect.Bracket
 import cats.implicits._
-import com.creatorships.web.comic.catalogs.application.distributors.Comics
+import com.creatorships.web.comic.catalogs.application.providers.Comics
 import com.creatorships.web.comic.catalogs.domain.provider.Provider.Comic
 import doobie.implicits._
 import doobie.util.fragment.Fragment

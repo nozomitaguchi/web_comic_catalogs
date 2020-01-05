@@ -1,8 +1,10 @@
-package com.creatorships.web.comic.catalogs.application.distributors
+package com.creatorships.web.comic.catalogs.application.providers
 
 import cats.Monad
 import cats.effect.Bracket
 import cats.implicits._
+import com.creatorships.web.comic.catalogs.application.providers
+import com.creatorships.web.comic.catalogs.application.providers.distributors.{Coordinators, Publishers}
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.AnalyzeRules
 import com.creatorships.web.comic.catalogs.infrastructure.{AnalyzeRulesRepository, DistributorsRepository}
 import doobie.util.transactor.Transactor
@@ -28,7 +30,7 @@ object Distributors {
       publishers <- distributorRepository.findPublishers
       analyzeRules <- analyzeRulesRepository.findAll
     } yield {
-      Distributors(coordinators, publishers, analyzeRules)
+      providers.Distributors(coordinators, publishers, analyzeRules)
     }
   }
 

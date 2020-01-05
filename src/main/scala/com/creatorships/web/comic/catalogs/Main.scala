@@ -2,7 +2,7 @@ package com.creatorships.web.comic.catalogs
 
 import cats.effect.ExitCode
 import com.creatorships.web.comic.catalogs.application.Transaction
-import com.creatorships.web.comic.catalogs.application.distributors.Distributors
+import com.creatorships.web.comic.catalogs.application.providers.Distributors
 import monix.eval.{Task, TaskApp}
 
 object Main extends TaskApp {

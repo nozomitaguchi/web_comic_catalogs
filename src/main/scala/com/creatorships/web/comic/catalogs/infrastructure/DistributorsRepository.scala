@@ -2,7 +2,7 @@ package com.creatorships.web.comic.catalogs.infrastructure
 
 import cats.Monad
 import cats.effect.Bracket
-import com.creatorships.web.comic.catalogs.application.distributors.{Coordinators, Publishers}
+import com.creatorships.web.comic.catalogs.application.providers.distributors.{Coordinators, Publishers}
 import com.creatorships.web.comic.catalogs.domain.provider.Provider.{Coordinator, Publisher}
 import com.creatorships.web.comic.catalogs.infrastructure.analyze.rule.DistributorType
 import doobie.implicits._

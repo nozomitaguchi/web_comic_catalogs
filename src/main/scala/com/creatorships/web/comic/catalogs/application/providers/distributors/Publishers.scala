@@ -1,7 +1,8 @@
-package com.creatorships.web.comic.catalogs.application.distributors
+package com.creatorships.web.comic.catalogs.application.providers.distributors
 
 import cats.Monad
 import cats.implicits._
+import com.creatorships.web.comic.catalogs.application.providers.Comics
 import com.creatorships.web.comic.catalogs.domain.analyze
 import com.creatorships.web.comic.catalogs.domain.provider.Provider.Publisher
 

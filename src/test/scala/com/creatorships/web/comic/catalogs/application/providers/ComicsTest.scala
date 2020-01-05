@@ -1,4 +1,4 @@
-package com.creatorships.web.comic.catalogs.application.distributors
+package com.creatorships.web.comic.catalogs.application.providers
 
 import com.creatorships.web.comic.catalogs.domain.provider.Provider.Comic
 import com.creatorships.web.comic.catalogs.domain.provider.columns.{Id, Name, Url}
