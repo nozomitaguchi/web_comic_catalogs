@@ -1,8 +1,7 @@
-package com.creatorships.web.comic.catalogs.infrastructure.analyze.url.record
+package com.creatorships.web.comic.catalogs.infrastructure.analyze.rule.record
 
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.AnalyzeRuleType
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.columns.Url.{AbsoluteUrl, RelativeUrl}
-import com.creatorships.web.comic.catalogs.domain.analyze.rule.columns.format.name.Format
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.columns.value.{Attribute, Generation, Selector}
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.columns.{Name, Url}
 import com.creatorships.web.comic.catalogs.domain.provider._

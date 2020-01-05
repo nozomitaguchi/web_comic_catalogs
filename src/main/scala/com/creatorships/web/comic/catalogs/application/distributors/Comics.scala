@@ -28,3 +28,9 @@ case class Comics(toSeq: Seq[Comic]) extends AnyVal {
       .toList
 
 }
+
+object Comics {
+
+  def of(head: Comic, tail: Comic*): Comics = Comics(head +: tail)
+
+}

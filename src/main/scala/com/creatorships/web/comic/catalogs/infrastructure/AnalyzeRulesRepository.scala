@@ -3,7 +3,7 @@ package com.creatorships.web.comic.catalogs.infrastructure
 import cats.Monad
 import cats.effect.Bracket
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.AnalyzeRules
-import com.creatorships.web.comic.catalogs.infrastructure.analyze.url.record.{Record, Records}
+import com.creatorships.web.comic.catalogs.infrastructure.analyze.rule.record.{Record, Records}
 import doobie.implicits._
 import doobie.util.fragment.Fragment
 import doobie.util.transactor.Transactor

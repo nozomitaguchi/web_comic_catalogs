@@ -5,7 +5,6 @@ import cats.effect.Bracket
 import cats.implicits._
 import com.creatorships.web.comic.catalogs.application.distributors.Comics
 import com.creatorships.web.comic.catalogs.domain.provider.Provider.Comic
-import com.creatorships.web.comic.catalogs.domain.provider.columns.{Id, Name, Url}
 import doobie.implicits._
 import doobie.util.fragment.Fragment
 import doobie.util.transactor.Transactor
@@ -15,7 +14,7 @@ case class ComicsRepository[F[_]: Monad](xa: Transactor[F])(implicit bracket: Br
 
   type Record = (Int, String, String, String)
 
-  def findAll: F[Comics] = selectAll.query[Comic].to[List].map(Comics).transact(xa)
+  def findAll: F[Comics] = selectAll.query[Comic].to[List].map(Comics.apply).transact(xa)
 
   def insert(comics: Comics): F[Int] = insertAll(comics.distinct).transact(xa)
 
@@ -30,10 +29,7 @@ case class ComicsRepository[F[_]: Monad](xa: Transactor[F])(implicit bracket: Br
        """.stripMargin
 
   private def insertAll(comics: Comics): doobie.ConnectionIO[Int] = {
-    val sql = """INSERT INTO
-                | comics (distributor_id, name, url, image_url)
-                |VALUES (?, ?, ?, ?);
-              """.stripMargin
+    val sql = "INSERT INTO comics (distributor_id, name, url, image_url) VALUES (?, ?, ?, ?);"
     Update[Record](sql).updateMany(comics.tuples)
   }
 
