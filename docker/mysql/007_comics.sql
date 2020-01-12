@@ -7,7 +7,7 @@ CREATE TABLE comics (
   id INT NOT NULL UNIQUE AUTO_INCREMENT,
   distributor_id INT NOT NULL,
   name VARCHAR (100) NOT NULL,
-  url VARCHAR(2083) NOT NULL,
+  url VARCHAR(800) NOT NULL,
   image_url VARCHAR(2083) NOT NULL,
   FOREIGN KEY fk_distributor_id6(distributor_id) REFERENCES distributors(id),
   PRIMARY KEY(distributor_id, name, url)
