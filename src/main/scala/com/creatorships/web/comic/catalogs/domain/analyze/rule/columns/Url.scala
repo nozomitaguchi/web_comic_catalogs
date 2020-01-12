@@ -38,7 +38,7 @@ object Url {
 
   }
 
-  def of(
+  private def of(
     selector: Selector,
     maybeAttribute: Option[Attribute],
     generation: Generation,
@@ -47,5 +47,10 @@ object Url {
     maybeUrl
       .map(RelativeUrl(selector, maybeAttribute, generation, _))
       .getOrElse(AbsoluteUrl(selector, maybeAttribute, generation))
+
+  def of(tuple: (Selector, Option[Attribute], Generation, Option[columns.Url])): Url = {
+    val (selector, attribute, generation, url) = tuple
+    of(selector, attribute, generation, url)
+  }
 
 }

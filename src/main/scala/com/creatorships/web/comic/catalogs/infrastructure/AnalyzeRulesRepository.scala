@@ -2,16 +2,21 @@ package com.creatorships.web.comic.catalogs.infrastructure
 
 import cats.Monad
 import cats.effect.Bracket
+import com.creatorships.web.comic.catalogs.domain.analyze.rule.columns.Url
+import com.creatorships.web.comic.catalogs.domain.analyze.rule.columns.value.{Attribute, Generation, Selector}
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.{AnalyzeRuleType, AnalyzeRules}
+import com.creatorships.web.comic.catalogs.domain.provider.columns
 import com.creatorships.web.comic.catalogs.infrastructure.analyze.rule.record.{Record, Records}
 import doobie.implicits._
-import doobie.util.Get
+import doobie.util.{Get, Read}
 import doobie.util.fragment.Fragment
 import doobie.util.transactor.Transactor
 
 case class AnalyzeRulesRepository[F[_]: Monad](transactor: Transactor[F])(implicit bracket: Bracket[F, Throwable]) {
 
   implicit val analyzeRuleTypeGet: Get[Option[AnalyzeRuleType]] = Get[String].map(AnalyzeRuleType.of)
+
+  implicit val urlGet: Read[Url] = Read[(Selector, Option[Attribute], Generation, Option[columns.Url])].map(Url.of)
 
   def findAll: F[AnalyzeRules] =
     selectAll
