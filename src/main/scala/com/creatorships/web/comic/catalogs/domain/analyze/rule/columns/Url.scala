@@ -38,4 +38,14 @@ object Url {
 
   }
 
+  def of(
+    selector: Selector,
+    maybeAttribute: Option[Attribute],
+    generation: Generation,
+    maybeUrl: Option[columns.Url]
+  ): Url =
+    maybeUrl
+      .map(RelativeUrl(selector, maybeAttribute, generation, _))
+      .getOrElse(AbsoluteUrl(selector, maybeAttribute, generation))
+
 }

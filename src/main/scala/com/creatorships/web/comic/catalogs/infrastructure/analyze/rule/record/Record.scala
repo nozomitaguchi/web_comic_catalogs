@@ -1,24 +1,22 @@
 package com.creatorships.web.comic.catalogs.infrastructure.analyze.rule.record
 
+import com.creatorships.web.comic.catalogs.domain.analyze.rule
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.AnalyzeRuleType
-import com.creatorships.web.comic.catalogs.domain.analyze.rule.columns.Url.{AbsoluteUrl, RelativeUrl}
+import com.creatorships.web.comic.catalogs.domain.analyze.rule.columns._
 import com.creatorships.web.comic.catalogs.domain.analyze.rule.columns.value.{Attribute, Generation, Selector}
-import com.creatorships.web.comic.catalogs.domain.analyze.rule.columns.{Name, Url}
 import com.creatorships.web.comic.catalogs.domain.provider._
 import com.creatorships.web.comic.catalogs.domain.provider.columns.Id
 
 case class Record(
   id: Id,
-  analyzeRuleType: String,
+  analyzeRuleType: Option[AnalyzeRuleType],
   catalogSelector: Selector,
   name: Name,
   urlRecord: Record.Url,
   imageUrlRecord: Record.Url
 ) {
 
-  private val maybeAnalyzeRuleType: Option[AnalyzeRuleType] = AnalyzeRuleType.of(analyzeRuleType)
-
-  val isPublisher: Boolean = maybeAnalyzeRuleType.exists(_.isPublisher)
+  val isPublisher: Boolean = analyzeRuleType.exists(_.isPublisher)
 
   val url: Url = urlRecord.convert
 
@@ -34,10 +32,7 @@ object Record {
     maybeUrl: Option[columns.Url]
   ) {
 
-    def convert: com.creatorships.web.comic.catalogs.domain.analyze.rule.columns.Url =
-      maybeUrl
-        .map(RelativeUrl(selector, maybeAttribute, generation, _))
-        .getOrElse(AbsoluteUrl(selector, maybeAttribute, generation))
+    def convert: rule.columns.Url = rule.columns.Url.of(selector, maybeAttribute, generation, maybeUrl)
 
   }
 
